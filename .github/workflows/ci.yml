@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - iceraven
+  workflow_dispatch:
 
 jobs:
   release-automation:
@@ -49,7 +50,7 @@ jobs:
         env:
           GRADLE_OPTS: -Dorg.gradle.jvmargs="-XX:MaxMetaspaceSize=4g -Xms1g -Xmx7g -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/dev/stderr"
         run: |
-          /usr/bin/time -v ./gradlew app:assembleForkRelease -PversionName=${{ env.VERSION_NAME }} --stacktrace --no-daemon
+          /usr/bin/time -v ./gradlew app:assembleForkRelease -PversionName=${{ env.VERSION_NAME }} -Pofficial --stacktrace --no-daemon
 
       - name: Debug
         run: |

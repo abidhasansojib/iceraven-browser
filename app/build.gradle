@@ -407,11 +407,7 @@ android.defaultConfig.with {
         buildConfigField 'String', 'GLEAN_CUSTOM_URL', 'null'
     }
 
-    if (project.hasProperty("official") || gradle.hasProperty("localProperties.official")) {
-        buildConfigField 'Boolean', 'MOZILLA_OFFICIAL', 'true'
-    } else {
-        buildConfigField 'Boolean', 'MOZILLA_OFFICIAL', 'false'
-    }
+    buildConfigField 'Boolean', 'MOZILLA_OFFICIAL', 'true'
 
     try {
         // def token = new File("${rootDir}/.wallpaper_url").text.trim()

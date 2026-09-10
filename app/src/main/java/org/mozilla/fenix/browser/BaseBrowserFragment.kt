@@ -1284,19 +1284,16 @@ abstract class BaseBrowserFragment :
             view = view,
         )
 
-        // This component feature only works on Fenix when built on Mozilla infrastructure.
-        if (BuildConfig.MOZILLA_OFFICIAL) {
-            webAuthnFeature.set(
-                feature = WebAuthnFeature(
-                    engine = requireComponents.core.engine,
-                    activity = requireActivity(),
-                    exitFullScreen = requireComponents.useCases.sessionUseCases.exitFullscreen::invoke,
-                    currentTab = { store.state.selectedTabId },
-                ),
-                owner = this,
-                view = view,
-            )
-        }
+        webAuthnFeature.set(
+            feature = WebAuthnFeature(
+                engine = requireComponents.core.engine,
+                activity = requireActivity(),
+                exitFullScreen = requireComponents.useCases.sessionUseCases.exitFullscreen::invoke,
+                currentTab = { store.state.selectedTabId },
+            ),
+            owner = this,
+            view = view,
+        )
 
         screenOrientationFeature.set(
             feature = ScreenOrientationFeature(
